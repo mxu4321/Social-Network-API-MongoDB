@@ -1,5 +1,6 @@
 const { User, Thought } = require('../models');
 
+// ⏰ TODO: check this controller for errors
 const userController = {
     // ❄️ get all users
     getAllUser(req, res) {
@@ -108,7 +109,5 @@ const userController = {
     }
 
 };
-
-
 
 module.exports = userController;
