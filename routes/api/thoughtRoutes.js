@@ -15,6 +15,7 @@ const {
 
 // ❄️ /api/thoughts
 router.route('/').get(getAllThoughts).post(createThought);
+// ⏰: push the created thought's _id to the associated user's thoughts array field
 
 // ❄️ /api/thoughts/:id
 router.route('/:id').get(getThoughtById).put(updateThoughtById).delete(deleteThoughtById);
