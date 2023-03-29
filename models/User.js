@@ -6,7 +6,7 @@
 
 const { Schema, model, Types } = require("mongoose");
 
-const UserSchema = new Schema(
+const userSchema = new Schema(
   {
     username: {
       type: String,
@@ -23,13 +23,13 @@ const UserSchema = new Schema(
     thoughts: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Thought",
+        ref: "thought",
       },
     ],
     friends: [
       {
         type: Schema.Types.ObjectId,
-        ref: "User",
+        ref: "user",
       },
     ],
   },
@@ -37,7 +37,6 @@ const UserSchema = new Schema(
     // ❄️ Mongoose supports two Schema options to transform Objects after querying MongoDb: toJSON and toObject.
     toJSON: {
       virtuals: true,
-      getters: true,
     },
     id: false,
   }
@@ -49,6 +48,6 @@ UserSchema.virtual("friendCount").get(function () {
 });
 
 // ❄️ create the User model using the UserSchema
-const User = model("User", UserSchema);
+const User = model("user", userSchema);
 
 module.exports = User;
