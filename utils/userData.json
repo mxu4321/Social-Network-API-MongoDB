@@ -2,52 +2,19 @@
     {
         "username": "test1",
         "email": "test1@email.com",
-        "thoughts": [
-            {
-                "thoughtText": "user thought 1 by test1",
-                "createdAt": "2021-03-01T17:00:00.000Z",
-                "username": "test1"
-            },
-            {
-                "thoughtText": "user thought 2 by test1",
-                "createdAt": "2021-03-01T17:00:00.000Z",
-                "username": "test1"
-            }
-        ],
-        "friends": [ "test2", "test3" ]
+        "thoughts": [],
+        "friends": []
     },
     {
         "username": "test2",
         "email": "test2@email.com",
-        "thoughts": [
-            {
-                "thoughtText": "user thought 1 by test2",
-                "createdAt": "2021-03-01T17:00:00.000Z",
-                "username": "test2"
-            },
-            {
-                "thoughtText": "user thought 2 by test2",
-                "createdAt": "2021-03-01T17:00:00.000Z",
-                "username": "test2"
-            }
-        ],
-        "friends": ["test1", "test3"]
+        "thoughts": [],
+        "friends": []
     },
     {
         "username": "test3",
         "email": "test3@email.com",
-        "thoughts":[
-            {
-                "thoughtText": "user thought 1 by test3",
-                "createdAt": "2021-03-01T17:00:00.000Z",
-                "username": "test2"
-            },
-            {
-                "thoughtText": "user thought 2 by test3",
-                "createdAt": "2021-03-01T17:00:00.000Z",
-                "username": "test2"
-            }
-        ],
-        "friends": ["test1", "test2"]
+        "thoughts":[],
+        "friends": []
     }
 ]

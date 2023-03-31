@@ -1,7 +1,7 @@
 const { User, Thought } = require("../models");
 
 const thoughtController = {
-  // ❄️ get all thoughts
+  // ❄️ get all thoughts 🧪✅
   getAllThoughts(req, res) {
     Thought.find({})
       .then((dbThoughtData) => res.json(dbThoughtData))
@@ -11,7 +11,7 @@ const thoughtController = {
       });
   },
 
-  // ❄️ get one thought by id
+  // ❄️ get one thought by id 🧪✅
   getThoughtById(req, res) {
     Thought.findOne({ _id: req.params.id })
       .then((dbThoughtData) => {
@@ -27,12 +27,12 @@ const thoughtController = {
       });
   },
 
-  // ❄️ create thought
+  // ❄️ create thought 🧪✅
   createThought(req, res) {
     Thought.create(req.body)
       .then(({ _id }) => {
         return User.findOneAndUpdate(
-          { _id: req.params.userId },
+          { _id: req.body.userId },
           { $push: { thoughts: _id } },
           { new: true }
         );
@@ -47,7 +47,7 @@ const thoughtController = {
       .catch((err) => res.status(400).json(err));
   },
 
-  // ❄️ update thought by id
+  // ❄️ update thought by id 🧪✅
   updateThoughtById(req, res) {
     Thought.findOneAndUpdate({ _id: req.params.id }, req.body, {
       new: true,
@@ -63,7 +63,7 @@ const thoughtController = {
       .catch((err) => res.status(400).json(err));
   },
 
-  // ❄️ delete thought by id
+  // ❄️ delete thought by id 🧪✅
   deleteThoughtById(req, res) {
     Thought.findOneAndDelete({ _id: req.params.id })
       .then((dbThoughtData) => {
@@ -71,12 +71,14 @@ const thoughtController = {
           res.status(404).json({ message: "No thought found with this id!" });
           return;
         }
-        res.json(dbThoughtData);
+        res.json({
+          message: `Successfully deleted thought of '${dbThoughtData.thoughtText}' with id: ${req.params.id}`,
+        });
       })
       .catch((err) => res.status(400).json(err));
   },
 
-  // ❄️ add reaction
+  // ❄️ add reaction 🧪✅
   addReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
@@ -93,15 +95,19 @@ const thoughtController = {
       .catch((err) => res.status(400).json(err));
   },
 
-  // ❄️ remove reaction
+  // ❄️ remove reaction  🧪✅
   removeReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $pull: { reactions: { reactionId: req.params.reactionId } } },
       { new: true }
     )
-      .then((dbThoughtData) => res.json(dbThoughtData))
-      .catch((err) => res.json(err));
+      .then((dbThoughtData) => res.json({
+        message: `Successfully deleted reaction of '${dbThoughtData.thoughtText}' with its id: '${req.params.reactionId}'`,
+        parentObject: dbThoughtData,
+        reactions: dbThoughtData.reactions
+      }))
+      .catch((err) => res.json(err)); 
   },
 };
 
